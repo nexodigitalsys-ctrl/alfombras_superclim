@@ -29,7 +29,16 @@ export const movementTypes = [
   "exit",
 ] as const;
 
+export const rugPhotoCategories = [
+  "entry",
+  "before_cleaning",
+  "after_cleaning",
+  "stored",
+  "exit",
+] as const;
+
 export type RugStatus = (typeof rugStatuses)[number];
 export type ServiceType = (typeof serviceTypes)[number];
 export type SizeCategory = (typeof sizeCategories)[number];
 export type MovementType = (typeof movementTypes)[number];
+export type RugPhotoCategory = (typeof rugPhotoCategories)[number];

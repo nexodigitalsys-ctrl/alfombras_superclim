@@ -124,9 +124,6 @@ export function RugDetailsCard({ rug }: RugDetailsCardProps) {
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-        Fotos preparadas para siguiente etapa. Actualmente se conserva el campo `photos` en el modelo.
-      </div>
     </section>
   );
 }

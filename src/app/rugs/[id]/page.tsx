@@ -5,6 +5,10 @@ import { AppShell } from "@/components/layout/app-shell";
 import { RugMovementForm } from "@/features/movements/components/rug-movement-form";
 import { RugMovementTimeline } from "@/features/movements/components/rug-movement-timeline";
 import { getRugMovements } from "@/features/movements/queries/get-rug-movements";
+import { RugPhotoGallery } from "@/features/rug-photos/components/rug-photo-gallery";
+import { RugPhotoUploadForm } from "@/features/rug-photos/components/rug-photo-upload-form";
+import { RugVisualChecklistForm } from "@/features/rug-photos/components/rug-visual-checklist-form";
+import { getRugPhotos } from "@/features/rug-photos/queries/get-rug-photos";
 import { RugDetailsCard } from "@/features/rugs/components/rug-details-card";
 import { getRugFormOptions } from "@/features/rugs/queries/get-rug-form-options";
 import { getRugById } from "@/features/rugs/queries/get-rug-by-id";
@@ -23,9 +27,10 @@ export default async function RugDetailPage({ params }: RugDetailPageProps) {
     notFound();
   }
 
-  const [{ data: movements }, options] = await Promise.all([
+  const [{ data: movements }, options, { data: photos, error: photosError }] = await Promise.all([
     getRugMovements(id),
     getRugFormOptions(rug.storage_location_id),
+    getRugPhotos(id),
   ]);
 
   return (
@@ -75,6 +80,9 @@ export default async function RugDetailPage({ params }: RugDetailPageProps) {
         ) : null}
 
         <RugDetailsCard rug={rug} />
+        <RugVisualChecklistForm rug={rug} />
+        <RugPhotoUploadForm rugId={rug.id} />
+        <RugPhotoGallery rugId={rug.id} photos={photos} error={photosError} />
         <RugMovementForm
           rug={rug}
           availableLocations={options.locations.map((location) => ({

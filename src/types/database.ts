@@ -1,5 +1,6 @@
 import type {
   MovementType,
+  RugPhotoCategory,
   RugStatus,
   ServiceType,
   SizeCategory,
@@ -110,6 +111,11 @@ export type Database = {
           total_price: number;
           notes: string | null;
           photos: string[];
+          photographed_on_entry: boolean;
+          condition_reviewed: boolean;
+          cleaning_completed: boolean;
+          stored_correctly: boolean;
+          ready_for_exit: boolean;
           created_at: string;
           updated_at: string;
         };
@@ -137,6 +143,11 @@ export type Database = {
           total_price?: number;
           notes?: string | null;
           photos?: string[];
+          photographed_on_entry?: boolean;
+          condition_reviewed?: boolean;
+          cleaning_completed?: boolean;
+          stored_correctly?: boolean;
+          ready_for_exit?: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -164,6 +175,41 @@ export type Database = {
           total_price?: number;
           notes?: string | null;
           photos?: string[];
+          photographed_on_entry?: boolean;
+          condition_reviewed?: boolean;
+          cleaning_completed?: boolean;
+          stored_correctly?: boolean;
+          ready_for_exit?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      rug_photos: {
+        Row: {
+          id: string;
+          rug_id: string;
+          storage_path: string;
+          category: RugPhotoCategory;
+          caption: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          rug_id: string;
+          storage_path: string;
+          category: RugPhotoCategory;
+          caption?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          rug_id?: string;
+          storage_path?: string;
+          category?: RugPhotoCategory;
+          caption?: string | null;
           created_at?: string;
           updated_at?: string;
         };
