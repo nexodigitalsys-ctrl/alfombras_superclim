@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hotel de Alfombras Superclim
 
-## Getting Started
+Sistema web profesional para gestion de almacenamiento de alfombras de clientes en Barcelona, construido con Next.js, TypeScript, Tailwind y Supabase.
 
-First, run the development server:
+## Estado actual
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+La aplicacion ya incluye:
+
+- dashboard operativo inicial
+- modulo de clientes
+- modulo de localizaciones
+- modulo de alfombras
+- reglas simples de precio
+- movimientos operativos
+- recibo HTML imprimible
+
+## Stack
+
+- Next.js 16 App Router
+- TypeScript estricto
+- Tailwind CSS 4
+- Supabase
+- Zod
+
+## Variables de entorno
+
+Copia `.env.example` a `.env.local` y completa:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Notas:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY` son obligatorias para la app.
+- `SUPABASE_SERVICE_ROLE_KEY` queda preparada para futuras operaciones administrativas, aunque hoy no es imprescindible para el flujo principal.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Desarrollo local
 
-## Learn More
+```bash
+npm install
+copy .env.example .env.local
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+App local:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `http://localhost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Validaciones
 
-## Deploy on Vercel
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Supabase
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Antes de usar la aplicacion, aplica las migraciones en este orden:
+
+1. [supabase/migrations/0001_initial_schema.sql](C:\Users\sedne\OneDrive\Documentos\almacenamiento_alfombras\supabase\migrations\0001_initial_schema.sql)
+2. [supabase/migrations/0002_rug_movements_workflow.sql](C:\Users\sedne\OneDrive\Documentos\almacenamiento_alfombras\supabase\migrations\0002_rug_movements_workflow.sql)
+
+Opcional:
+
+3. [supabase/seed.sql](C:\Users\sedne\OneDrive\Documentos\almacenamiento_alfombras\supabase\seed.sql)
+
+Si no tienes Supabase CLI configurado, ejecuta los SQL desde el `SQL Editor` del panel de Supabase.
+
+## Estructura principal
+
+```text
+src/
+  app/
+  components/
+  features/
+  lib/
+  types/
+supabase/
+  migrations/
+  seed.sql
+```
+
+## Git y GitHub
+
+Si todavia no tienes repo remoto:
+
+```bash
+git init
+git add .
+git commit -m "feat: initial superclim rug storage system"
+```
+
+Despues crea un repositorio vacio en GitHub y conecta el remoto:
+
+```bash
+git remote add origin https://github.com/SEU-USUARIO/SEU-REPO.git
+git branch -M main
+git push -u origin main
+```
+
+## Deploy en Vercel
+
+1. Subir el repo a GitHub.
+2. Entrar en Vercel.
+3. `Add New Project`.
+4. Importar el repositorio.
+5. Configurar variables:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+6. Ejecutar el deploy.
+
+Configuracion recomendada:
+
+- Framework: `Next.js`
+- Build command: `npm run build`
+- Install command: `npm install`
+
+## Pendencias antes de produccion real
+
+- aplicar la migracion `0002` en Supabase
+- definir estrategia real de autenticacion y permisos
+- definir flujo real de cobro si `pagamentos pendentes` va a ser financiero de verdad
+- implementar upload real de fotos
+- revisar politicas RLS de Supabase antes de abrir acceso multiusuario
