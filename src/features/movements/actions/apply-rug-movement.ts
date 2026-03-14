@@ -6,11 +6,6 @@ import type { RugMovementFormState } from "@/features/movements/types/movement";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { MovementType } from "@/types/domain";
 
-const initialState: RugMovementFormState = {
-  status: "idle",
-  message: null,
-};
-
 function normalizeValue(value: FormDataEntryValue | null): string {
   return typeof value === "string" ? value.trim() : "";
 }
@@ -58,7 +53,10 @@ export async function applyRugMovementAction(
     revalidatePath(`/rugs/${rugId}`);
     revalidatePath("/locations");
 
-    return initialState;
+    return {
+      status: "idle",
+      message: null,
+    };
   } catch {
     return {
       status: "error",
@@ -66,5 +64,3 @@ export async function applyRugMovementAction(
     };
   }
 }
-
-export const rugMovementInitialState = initialState;

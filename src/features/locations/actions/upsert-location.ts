@@ -10,12 +10,6 @@ import {
 import type { LocationFormState } from "@/features/locations/types/location";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-const initialState: LocationFormState = {
-  status: "idle",
-  message: null,
-  fieldErrors: {},
-};
-
 function normalizeValue(value: FormDataEntryValue | null): string {
   return typeof value === "string" ? value.trim() : "";
 }
@@ -118,7 +112,9 @@ export async function upsertLocationAction(
     };
   }
 
-  return initialState;
+  return {
+    status: "idle",
+    message: null,
+    fieldErrors: {},
+  };
 }
-
-export const locationFormInitialState = initialState;

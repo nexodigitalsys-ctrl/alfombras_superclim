@@ -2,10 +2,7 @@
 
 import { useActionState } from "react";
 
-import {
-  applyRugMovementAction,
-  rugMovementInitialState,
-} from "@/features/movements/actions/apply-rug-movement";
+import { applyRugMovementAction } from "@/features/movements/actions/apply-rug-movement";
 import type { RugMovementFormState } from "@/features/movements/types/movement";
 import type { RugListItem } from "@/features/rugs/types/rug";
 
@@ -15,6 +12,11 @@ type RugMovementFormProps = {
     id: string;
     label: string;
   }>;
+};
+
+const rugMovementInitialState: RugMovementFormState = {
+  status: "idle",
+  message: null,
 };
 
 function FormMessage({ state }: { state: RugMovementFormState }) {

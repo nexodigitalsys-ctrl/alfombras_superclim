@@ -7,10 +7,7 @@ import {
   buildLocationLabel,
   locationSchema,
 } from "@/features/locations/schemas/location-schema";
-import {
-  locationFormInitialState,
-  upsertLocationAction,
-} from "@/features/locations/actions/upsert-location";
+import { upsertLocationAction } from "@/features/locations/actions/upsert-location";
 import type {
   LocationFormState,
   LocationFormValues,
@@ -20,6 +17,12 @@ import { cn } from "@/lib/utils/cn";
 
 type LocationFormProps = {
   location?: StorageLocation;
+};
+
+const locationFormInitialState: LocationFormState = {
+  status: "idle",
+  message: null,
+  fieldErrors: {},
 };
 
 function getDefaultValues(location?: StorageLocation): LocationFormValues {

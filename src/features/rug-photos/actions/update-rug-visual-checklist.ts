@@ -10,11 +10,6 @@ const rugVisualChecklistSchema = z.object({
   rugId: z.string().uuid("Alfombra invalida."),
 });
 
-export const rugVisualChecklistInitialState: RugVisualChecklistState = {
-  status: "idle",
-  message: null,
-};
-
 function isChecked(formData: FormData, key: string): boolean {
   return formData.get(key) === "true";
 }

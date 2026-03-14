@@ -2,16 +2,22 @@
 
 import { useActionState } from "react";
 
+import { uploadRugPhotoAction } from "@/features/rug-photos/actions/upload-rug-photo";
 import {
-  rugPhotoUploadInitialState,
-  uploadRugPhotoAction,
-} from "@/features/rug-photos/actions/upload-rug-photo";
-import { rugPhotoCategoryLabels } from "@/features/rug-photos/types/rug-photo";
+  rugPhotoCategoryLabels,
+  type RugPhotoUploadState,
+} from "@/features/rug-photos/types/rug-photo";
 import { rugPhotoCategories } from "@/types/domain";
 import { cn } from "@/lib/utils/cn";
 
 type RugPhotoUploadFormProps = {
   rugId: string;
+};
+
+const rugPhotoUploadInitialState: RugPhotoUploadState = {
+  status: "idle",
+  message: null,
+  fieldErrors: {},
 };
 
 export function RugPhotoUploadForm({ rugId }: RugPhotoUploadFormProps) {

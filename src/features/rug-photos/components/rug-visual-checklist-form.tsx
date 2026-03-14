@@ -2,15 +2,18 @@
 
 import { useActionState } from "react";
 
-import {
-  rugVisualChecklistInitialState,
-  updateRugVisualChecklistAction,
-} from "@/features/rug-photos/actions/update-rug-visual-checklist";
+import { updateRugVisualChecklistAction } from "@/features/rug-photos/actions/update-rug-visual-checklist";
+import type { RugVisualChecklistState } from "@/features/rug-photos/types/rug-photo";
 import type { RugListItem } from "@/features/rugs/types/rug";
 import { cn } from "@/lib/utils/cn";
 
 type RugVisualChecklistFormProps = {
   rug: RugListItem;
+};
+
+const rugVisualChecklistInitialState: RugVisualChecklistState = {
+  status: "idle",
+  message: null,
 };
 
 type ChecklistItemProps = {

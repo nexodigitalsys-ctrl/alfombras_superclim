@@ -3,10 +3,7 @@
 import Link from "next/link";
 import { useActionState } from "react";
 
-import {
-  clientFormInitialState,
-  upsertClientAction,
-} from "@/features/clients/actions/upsert-client";
+import { upsertClientAction } from "@/features/clients/actions/upsert-client";
 import type {
   Client,
   ClientFormState,
@@ -16,6 +13,12 @@ import { cn } from "@/lib/utils/cn";
 
 type ClientFormProps = {
   client?: Client;
+};
+
+const clientFormInitialState: ClientFormState = {
+  status: "idle",
+  message: null,
+  fieldErrors: {},
 };
 
 function getDefaultValues(client?: Client): ClientFormValues {

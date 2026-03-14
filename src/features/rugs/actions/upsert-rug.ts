@@ -9,12 +9,6 @@ import type { PricingRule } from "@/features/pricing/types/pricing-rule";
 import { calculateRugPricing } from "@/lib/pricing/calculate-rug-pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-const initialState: RugFormState = {
-  status: "idle",
-  message: null,
-  fieldErrors: {},
-};
-
 function normalizeValue(value: FormDataEntryValue | null): string {
   return typeof value === "string" ? value.trim() : "";
 }
@@ -206,5 +200,3 @@ export async function upsertRugAction(
     };
   }
 }
-
-export const rugFormInitialState = initialState;

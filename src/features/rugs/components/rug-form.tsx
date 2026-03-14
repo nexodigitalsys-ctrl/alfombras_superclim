@@ -3,10 +3,7 @@
 import Link from "next/link";
 import { useActionState, useEffect, useState } from "react";
 
-import {
-  rugFormInitialState,
-  upsertRugAction,
-} from "@/features/rugs/actions/upsert-rug";
+import { upsertRugAction } from "@/features/rugs/actions/upsert-rug";
 import { calculateRugPricing } from "@/lib/pricing/calculate-rug-pricing";
 import type {
   Rug,
@@ -20,6 +17,12 @@ import { cn } from "@/lib/utils/cn";
 type RugFormProps = {
   rug?: Rug;
   options: RugFormOptions;
+};
+
+const rugFormInitialState: RugFormState = {
+  status: "idle",
+  message: null,
+  fieldErrors: {},
 };
 
 function getDefaultValues(rug?: Rug): RugFormValues {

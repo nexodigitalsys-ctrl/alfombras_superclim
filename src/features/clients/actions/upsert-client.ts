@@ -7,12 +7,6 @@ import { clientSchema } from "@/features/clients/schemas/client-schema";
 import type { ClientFormState } from "@/features/clients/types/client";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-const initialState: ClientFormState = {
-  status: "idle",
-  message: null,
-  fieldErrors: {},
-};
-
 function normalizeOptionalValue(value: FormDataEntryValue | null): string {
   return typeof value === "string" ? value.trim() : "";
 }
@@ -93,7 +87,9 @@ export async function upsertClientAction(
     };
   }
 
-  return initialState;
+  return {
+    status: "idle",
+    message: null,
+    fieldErrors: {},
+  };
 }
-
-export const clientFormInitialState = initialState;

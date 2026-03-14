@@ -9,12 +9,6 @@ import {
 } from "@/features/rug-photos/schemas/rug-photo-schema";
 import type { RugPhotoUploadState } from "@/features/rug-photos/types/rug-photo";
 
-export const rugPhotoUploadInitialState: RugPhotoUploadState = {
-  status: "idle",
-  message: null,
-  fieldErrors: {},
-};
-
 function buildStoragePath(rugId: string, fileName: string): string {
   const safeName = fileName.replace(/[^a-zA-Z0-9.-]/g, "-").toLowerCase();
   return `${rugId}/${Date.now()}-${safeName}`;

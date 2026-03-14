@@ -7,12 +7,6 @@ import { pricingRuleSchema } from "@/features/pricing/schemas/pricing-rule-schem
 import type { PricingRuleFormState } from "@/features/pricing/types/pricing-rule";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-const initialState: PricingRuleFormState = {
-  status: "idle",
-  message: null,
-  fieldErrors: {},
-};
-
 function normalizeValue(value: FormDataEntryValue | null): string {
   return typeof value === "string" ? value.trim() : "";
 }
@@ -107,5 +101,3 @@ export async function upsertPricingRuleAction(
     };
   }
 }
-
-export const pricingRuleFormInitialState = initialState;

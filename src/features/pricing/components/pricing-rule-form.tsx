@@ -3,10 +3,7 @@
 import Link from "next/link";
 import { useActionState } from "react";
 
-import {
-  pricingRuleFormInitialState,
-  upsertPricingRuleAction,
-} from "@/features/pricing/actions/upsert-pricing-rule";
+import { upsertPricingRuleAction } from "@/features/pricing/actions/upsert-pricing-rule";
 import type {
   PricingRule,
   PricingRuleFormState,
@@ -17,6 +14,12 @@ import { cn } from "@/lib/utils/cn";
 
 type PricingRuleFormProps = {
   rule?: PricingRule;
+};
+
+const pricingRuleFormInitialState: PricingRuleFormState = {
+  status: "idle",
+  message: null,
+  fieldErrors: {},
 };
 
 function getDefaultValues(rule?: PricingRule): PricingRuleFormValues {
